@@ -15,7 +15,7 @@ and   quantiy>=4 and year(sale_date)= 2022;
 -- Q.3 Write a SQL query to calculate the total sales (total_sale) for each category.
 
 select category, sum(total_sale) as Tota_sales from retail_sales_analysis
-group by 1;
+group by category;
 
 -- Q.4 Write a SQL query to find the average age of customers who purchased items from the 'Beauty' category.
 select category,avg(age) as AVG_Age from retail_sales_analysis
@@ -28,19 +28,19 @@ where total_sale> 1000;
 
 -- Q.6 Write a SQL query to find the total number of transactions (transaction_id) made by each gender in each category.
 select gender, category, count(*) as Total_transaction from retail_sales_analysis
-group by 1 ,2;
+group by gender, category;
 
 
 -- Q.7 Write a SQL query to calculate the average sale for each month. Find out best selling month in each year
 select month(sale_date) as month, avg(total_sale) as Average_Sales 
 from retail_sales_analysis
-group by 1
-order by 1;
+group by month
+order by month;
 
 select month(sale_date) as month, year(sale_date) as year, avg(total_sale) as Average_Sales 
 from retail_sales_analysis
-group by 1 ,2
-order by 1, 2
+group by month, year
+order by month, year
 desc limit 3 ;
 
 -- Q.8 Write a SQL query to find the top 5 customers based on the highest total sales 
@@ -53,7 +53,7 @@ order by total_sale desc limit 5;
 
 select count(distinct customer_id) as Unique_customer_ID, category 
 from retail_sales_analysis
-group by 2;
+group by category;
 
 
 -- Q.10 Write a SQL query to create each shift and number of orders (Example Morning <12, Afternoon Between 12 & 17, Evening >17)
